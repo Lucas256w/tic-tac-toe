@@ -5,6 +5,7 @@ const gameBoard = (() => {
     let tempCheckWinner = ['','','']
     const restartButton = document.querySelector('#restart-button')
 
+    // reset Board
     restartButton.addEventListener('click', () =>{
         gameBoard.board = ['','','','','','','','',''];
         gameBoard.winner = ''
@@ -51,6 +52,7 @@ const displayController = (() => {
     let currentPlayer = ''
 
 
+    // add listeners to each square
     squares.forEach( press => {
         press.addEventListener('click', (e) => {
             if (press.innerHTML == '' && gameBoard.winner == '') {
@@ -65,6 +67,8 @@ const displayController = (() => {
                 }
         }
             showBoard()
+
+            // check if there is a winner
             gameBoard.winner = gameBoard.checkWin()
             if (gameBoard.winner != '') {
                 if (gameBoard.winner == displayController.playerOne.marker){
@@ -81,6 +85,7 @@ const displayController = (() => {
         })
     })
 
+    // show the board
     const showBoard = () => {
         for (i = 0; i< gameBoard.board.length; i++) {
             if (gameBoard.board[i] == 'X') {
@@ -99,6 +104,7 @@ const displayController = (() => {
 
 })();
 
+// modal settings
 const modalDisplay = (() => {
     const dialog = document.querySelector('dialog');
     const playerOne = document.querySelector('#playerOneInput')
@@ -123,6 +129,7 @@ const modalDisplay = (() => {
     return
 })();
 
+// function factory for making players
 function makePLayer (name, marker) {
     
     let score = 0;
