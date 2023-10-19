@@ -1,5 +1,3 @@
-
-
 const gameBoard = (() => {
 
     let board = ['','','','','','','','',''];
@@ -43,15 +41,6 @@ const gameBoard = (() => {
 
     return {board, winConditions, checkWin, winner, tempCheckWinner}
 })();
-
-function makePLayer (name, marker) {
-    
-    let score = 0;
-    const getScore = () => score;
-    const wins = () => score++;
-
-    return {name, marker, getScore, wins}
-}
 
 const displayController = (() => {
     const squares = document.querySelectorAll('.square');
@@ -133,4 +122,13 @@ const modalDisplay = (() => {
 
     return
 })();
-displayController.showBoard()
+
+function makePLayer (name, marker) {
+    
+    let score = 0;
+    const getScore = () => score;
+    const wins = () => score++;
+
+    return {name, marker, getScore, wins}
+}
+
