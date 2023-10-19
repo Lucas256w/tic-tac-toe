@@ -8,21 +8,32 @@
     <script src="javascript.js" defer></script>
 </head>
 <body>
+    <div id="dialog-title">Welcome to Tic Tac Toe</div>
+    <dialog>
+        <div id="modal-title">Enter your names</div>
+        <form action="dialog">
+                <label for="playerOneInput">X: <input id="playerOneInput" type="text" required></label>
+                <label for="playerTwoInput">O: <input id="playerTwoInput" type="text" required></label>
+            <button id="submit-player-name">Play!</button>
+        </form>
+    </dialog>
     <header>
         <div id="title">Tic Tac Toe</div>
     </header>
     <main>
+        <div id="winnerText">Player X's turn</div>
         <div id="board">
-            <div class="square">s</div>
-            <div class="square">s</div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square"></div>
-            <div class="square">s</div>
+            <div id="0" class="square"></div>
+            <div id="1" class="square"></div>
+            <div id="2" class="square"></div>
+            <div id="3" class="square"></div>
+            <div id="4" class="square"></div>
+            <div id="5" class="square"></div>
+            <div id="6" class="square"></div>
+            <div id="7" class="square"></div>
+            <div id="8" class="square"></div>
         </div>
+        <button id="restart-button">Restart</button>
     </main>
     <footer>Made by Jiahao Huamani</footer>
 </body>
