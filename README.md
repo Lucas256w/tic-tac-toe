@@ -1,7 +1,7 @@
 # tic-tac-toe
 
 ## <a href="https://lucas256w.github.io/library/">Live Demo</a>
-<img src="./assets/Screenshot 2023-10-16 at 8.47.16 PM.png">
+<img src="./assets/Screenshot 2023-10-19 at 6.02.30 PM.png">
 <h3>Tic Tac Toe game utilizing Factory Functions and the Module Pattern</h3>
 
 <h3 align="left">Languages and Tools:</h3>
