@@ -24,9 +24,9 @@ time, mark, audio, video {
 /* GENERAL SETTINGS */
 
 :root {
-    --white: #D6FFF6;
-    --dark-blue: #01172F;
-    --light-blue: #72A1E5;
+    --white: #FFFFFF;
+    --dark-blue: #212121;
+    --light-blue: #0483B7;
     --container-width: 1200px;
     --border-radius: 8px;
     --spacing-xs: 5px;
@@ -76,6 +76,7 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    box-shadow: 2.5px 2.5px 5px var(--dark-blue);
 }
 
 .square {
@@ -109,18 +110,19 @@ button {
 /* FOOTER */
 
 footer {
-    margin-top: var(--spacing-xl);
+    padding: var(--spacing-md);
     text-align: center;
 }
 
 /* DIALOG */
+
 dialog {
     z-index: 1;
     position: fixed;
     top: 50%;
     bottom: 50%;
-    height: 400px;
-    width: 400px;
+    height: 500px;
+    width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: start;
@@ -130,22 +132,28 @@ dialog {
     background-color: var(--white);
     border: none;
     border-radius: var(--border-radius);
+    
 }
 
 dialog::backdrop {
     background-color: black;
 }
 
+#modal-title {
+    font-weight: 800;
+    font-size: 4rem;
+}
+
 form {
     font-size: 4rem;
-    margin-top: 40px;
+    margin-top: 30px;
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xl);
 }
 
 input {
-    outline: none;
+    outline: 2px solid var(--dark-blue);
     border: none;
     height: 50%;
     width: 200px;

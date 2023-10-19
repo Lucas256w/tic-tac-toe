@@ -5,13 +5,13 @@ const gameBoard = (() => {
     let board = ['','','','','','','','',''];
     let winner = '';
     let tempCheckWinner = ['','','']
-    const restartButton = document.querySelector('button')
+    const restartButton = document.querySelector('#restart-button')
 
     restartButton.addEventListener('click', () =>{
         gameBoard.board = ['','','','','','','','',''];
         gameBoard.winner = ''
         gameBoard.tempCheckWinner = ['','','']
-        displayController.winnerText.textContent = `Player X's turn`
+        displayController.winnerText.textContent = `Player ${displayController.playerOne.name}(X)'s turn`
         displayController.currentMarker = 'X'
         displayController.showBoard()
     });
@@ -56,7 +56,10 @@ function makePLayer (name, marker) {
 const displayController = (() => {
     const squares = document.querySelectorAll('.square');
     const winnerText = document.querySelector('#winnerText')
-    let currentMarker = 'X'
+    let playerOne = {}
+    let playerTwo = {}
+    let currentMarker = ''
+    let currentPlayer = ''
 
 
     squares.forEach( press => {
@@ -65,17 +68,23 @@ const displayController = (() => {
                 if (displayController.currentMarker == 'X') {
                     gameBoard.board[Number(press.id)] = 'X'
                     displayController.currentMarker = 'O'
+                    displayController.currentPlayer = displayController.playerTwo.name
                 } else {
                     gameBoard.board[Number(press.id)] = 'O'
                     displayController.currentMarker = 'X'
+                    displayController.currentPlayer = displayController.playerOne.name
                 }
         }
             showBoard()
             gameBoard.winner = gameBoard.checkWin()
             if (gameBoard.winner != '') {
-                displayController.winnerText.textContent = `Congratulations ${gameBoard.winner} wins!`
+                if (gameBoard.winner == displayController.playerOne.marker){
+                    displayController.winnerText.textContent = `Congratulations ${displayController.playerOne.name} wins!`
+                } else {
+                    displayController.winnerText.textContent = `Congratulations ${displayController.playerTwo.name} wins!`
+                }
             } else if (gameBoard.board.includes('')) {
-                displayController.winnerText.textContent = `Player ${displayController.currentMarker}'s turn`
+                displayController.winnerText.textContent = `Player ${displayController.currentPlayer}(${displayController.currentMarker})'s turn`
             } else {
                 displayController.winnerText.textContent = `It's a tie!`
             }
@@ -97,12 +106,31 @@ const displayController = (() => {
     }
 
     
-    return {showBoard, winnerText, currentMarker}
+    return {showBoard, winnerText, currentMarker, currentPlayer}
 
 })();
-const playerOne = makePLayer('jack', 'X')
-const playerTwo = makePLayer('Chloe', 'O')
-displayController.showBoard()
 
-const dialog = document.querySelector('dialog');
-dialog.showModal();
+const modalDisplay = (() => {
+    const dialog = document.querySelector('dialog');
+    const playerOne = document.querySelector('#playerOneInput')
+    const playerTwo = document.querySelector('#playerTwoInput')
+    const submitBtn = document.querySelector('#submit-player-name')
+    const show = dialog.showModal();
+
+    submitBtn.addEventListener('click', (e) =>{
+        if (playerOne.value !='' && playerTwo.value != '') {
+            e.preventDefault();
+            displayController.playerOne = makePLayer(playerOne.value, 'X')
+            displayController.playerTwo = makePLayer(playerTwo.value, 'O')
+            displayController.winnerText.textContent = `Player ${displayController.playerOne.name}(${displayController.playerOne.marker})'s turn`
+            displayController.currentMarker = displayController.playerOne.marker
+            displayController.currentPlayer = displayController.playerOne.name
+            dialog.style.display = 'none'
+            dialog.close()
+            }
+        })
+    
+
+    return
+})();
+displayController.showBoard()
